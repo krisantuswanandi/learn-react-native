@@ -1,7 +1,12 @@
 import { Text, View } from "react-native";
-import { Link } from "expo-router";
+import { useLocalSearchParams, useNavigation } from "expo-router";
 
 export default function Index() {
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const nav = useNavigation();
+
+  nav.setOptions({ title: `Item ${id}` });
+
   return (
     <View
       style={{
@@ -10,7 +15,7 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Detail</Text>
+      <Text>Item {id}</Text>
     </View>
   );
 }
